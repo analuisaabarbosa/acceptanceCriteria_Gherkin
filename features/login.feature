@@ -4,7 +4,7 @@ I want to log in to the platform
 To view my orders 
 
 Background: 
-Given that I acess the login page of the Ebac Shop
+Given that I access the login page of the Ebac Shop
 
 Scenario Outline: Log in with sucess
 When I enter the <user>
