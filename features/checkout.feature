@@ -1,20 +1,22 @@
 Feature: Checkout Screen
-As a client of the EBAC Shop 
-I want to customize my product according to my size and preferences
-And choose the quantity
-To then add to the cart
+As a client of EBAC-SHOP
+I want to complete my registration 
+To finalize my order
 
-Scenario: Mandatory selections for color, size, and quantity:
-Given that I access the product customization page
-When I try to proceed without selecting color, size and quantity
-Then the system should display an error message indicating that color, size, and quantity are required
+Background:
+Given I am on the user registration page
 
-Scenario: Limit of 10 products per sale
-Given I have added 10 products to the cart
-When I try to add one more product to the cart
-Then I should see an error message indicating that the maximum limit of 10 products per sale has been reached
+Scenario: All mandatory fields must be completed
+When I fill out the form with all mandatory data
+And I submit the registration form
+Then the registration should be successful
 
-Scenario: Clearing selections resets to the original state
-Given I have selected color, size, and quantity for a product
-When I click on the "Clear" button
-Then the product selection should reset to its original state (default color, size, and quantity)
+Scenario: Email field must be validated for correct format
+When I enter an invalid email format in the email field
+And I submit the registration form
+Then the system should display an error message indicating that the email format is invalid
+
+Scenario: Alert message for empty mandatory fields
+When I leave mandatory fields empty
+And I attempt to submit the registration form
+Then the system should display an alert message indicating that all required fields must be filled
